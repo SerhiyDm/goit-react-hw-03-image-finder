@@ -11,7 +11,7 @@ import { NotifyError } from 'components/Notify/Notify';
 export class App extends Component {
   state = {
     page: 1,
-    pageSize: 20,
+    pageSize: 12,
     query: '',
     photos: [],
     status: 'idle',
