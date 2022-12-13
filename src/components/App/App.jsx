@@ -36,11 +36,11 @@ export class App extends Component {
           );
           return;
         }
-        this.setState({
-          photos: responce.hits,
+        this.setState(prevState => ({
+          photos: [...prevState.photos, ...responce.hits],
           status: 'resolved',
           total: responce.totalHits,
-        });
+        }));
       } catch (error) {
         NotifyError(error.message);
         this.setState({ status: 'idle' });
@@ -72,7 +72,7 @@ export class App extends Component {
         <Searchbar onSubmit={this.getData} />
         {status === 'pending' && <Loader />}
         <Toaster />
-        {status === 'resolved' && (
+        {this.state.photos !== 0 && (
           <ImageGallery
             data={photos}
             onPending={this.changeStatePending}

@@ -7,5 +7,5 @@ export const Button = ({ text, onClik }) => (
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
