@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { AppStyled } from './App.styled';
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import { Button } from 'components/Button/Button';
-import { fetchPhotos } from 'components/services/rest_api';
+import { fetchPhotos } from 'services/rest_api';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Loader } from 'components/Loader/Loader';
 import { NotifyError } from 'components/Notify/Notify';
@@ -72,13 +72,7 @@ export class App extends Component {
         <Searchbar onSubmit={this.getData} />
         {status === 'pending' && <Loader />}
         <Toaster />
-        {this.state.photos !== 0 && (
-          <ImageGallery
-            data={photos}
-            onPending={this.changeStatePending}
-            onResolved={this.changeStateResolved}
-          />
-        )}
+        {this.state.photos.length !== 0 && <ImageGallery data={photos} />}
         {page < Math.ceil(total / pageSize) && (
           <Button text="Load more" onClik={this.handleClick} />
         )}
